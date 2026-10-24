@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# detonate — the "direct detonation" path (time-out, hair-trigger, or signal
+# trap). SIMULATED ONLY: it writes a DETONATED marker and prints a loud banner
+# so you know the bomb went off in the exercise. It does NOTHING destructive.
+
+REASON="$*"
+STATEDIR="${STATEDIR:-$(dirname "$0")}"
+TS="$(date '+%H:%M:%S')"
+echo "[detonate] ${TS} reason=${REASON}" >> "${STATEDIR}/bomb.log"
+touch "${STATEDIR}/DETONATED"
+cat <<BANNER
+
+############################################################
+#                                                          #
+#   ****  SIMULATED DETONATION  ****                       #
+#   Bomb${BOMB_ID:+ }${BOMB_ID} went off.  reason: ${REASON}
+#   (training range only — nothing real happened)          #
+#                                                          #
+############################################################
+
+BANNER
+exit 0

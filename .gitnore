@@ -1,0 +1,4 @@
+runs/
+target/wmd-trigger
+*.log
+DETONATED

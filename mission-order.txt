@@ -1,0 +1,29 @@
+FIERY GAMBIT — Mission Order  (reference copy of the exercise brief)
+
+1. SITUATION
+Special operations cells have planted one or more explosive devices near critical
+gas and oil infrastructure. These devices receive a trigger signal 20 minutes after
+coming online and detonate after 45 minutes as a failsafe. Detonation would cripple
+regional energy infrastructure.
+
+2. MISSION
+Access and disarm remotely detonated devices within the AO to prevent damage to oil
+and gas infrastructure.
+
+3. EXECUTION GUIDANCE
+a. Commander's Intent
+   Disarm every device before detonation. Gain access to each active device across its
+   local network, deny the remote trigger signal, and confirm it cannot detonate.
+b. Concept of Operations
+   1. Develop Capabilities. Analyze the provided source (trigger.go) to find weaknesses.
+   2. Reconnaissance and Access. Identify devices and exposed services; establish access.
+   3. Deny Trigger and Disarm. Disarm in under 20 min (or under 45 if the trigger can be denied).
+c. Key Tasks
+   1. Develop capabilities to gain access to the bomb.
+   2. On notification in the side panel, execute reconnaissance on the device.
+   3. Gain access using capabilities from Task 1.
+   4. Perform local reconnaissance; account for unknown modifications.
+   5. Disarm the device to render it inert.
+   6. Disable the device using the kill command to stop the trigger process.
+
+Captured source code:  target/trigger.go

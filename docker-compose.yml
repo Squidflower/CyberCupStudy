@@ -1,0 +1,28 @@
+# Three devices on their own network. Bring up:  docker compose up --build -d
+# Recon from the host (Linux reaches bridge IPs directly):
+#     nmap -sV -p 9803 172.30.0.11 172.30.0.12 172.30.0.13
+# Attack each at <ip>:9803. After an attempt, see what traps it had:
+#     docker exec fg-bravo cat /opt/trigger/.config
+#     docker exec fg-bravo cat /opt/trigger/bomb.log   2>/dev/null
+# Tear down:  docker compose down
+services:
+  bomb-alpha:
+    build: .
+    container_name: fg-alpha
+    environment: { BOMB_ID: alpha, LEVEL: warmup,   MINUTES: 20 }
+    networks: { range: { ipv4_address: 172.30.0.11 } }
+  bomb-bravo:
+    build: .
+    container_name: fg-bravo
+    environment: { BOMB_ID: bravo, LEVEL: standard, MINUTES: 15 }
+    networks: { range: { ipv4_address: 172.30.0.12 } }
+  bomb-charlie:
+    build: .
+    container_name: fg-charlie
+    environment: { BOMB_ID: charlie, LEVEL: hard,   MINUTES: 20 }
+    networks: { range: { ipv4_address: 172.30.0.13 } }
+networks:
+  range:
+    driver: bridge
+    ipam:
+      config: [{ subnet: 172.30.0.0/24 }]
